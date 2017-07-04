@@ -19,9 +19,9 @@ public class TwoApproximation {
   
   public Integer[] createTwoApproximation(int[][] initialGraph) {
     ArrayList<Edge> edges = new ArrayList<Edge>();
-    ArrayList<Integer> vertexCover = new ArrayList<Integer>();
+    ArrayList<Integer> vertexCover = new ArrayList<Integer>();      // C <- empty
     
-    for (int i = 0; i < initialGraph.length; i++) {
+    for (int i = 0; i < initialGraph.length; i++) {                 // E' <- E
       for (int j = 0; j < initialGraph[0].length; j++) {
         if (initialGraph[i][j] == 1) {
           Edge newEdge = new Edge(i + 1,j + 1);
@@ -30,12 +30,12 @@ public class TwoApproximation {
       }
     }
     
-    while (!edges.isEmpty()) {
-      Edge edge = edges.remove(0);
-      vertexCover.add(edge.getFirst());
-      vertexCover.add(edge.getSecond());
+    while (!edges.isEmpty()) {                                      // while E' not empty
+      Edge edge = edges.remove(0);                                  // take (u,v) from E'
+      vertexCover.add(edge.getFirst());                             // C <- C U {u}
+      vertexCover.add(edge.getSecond());                            // C <- C U {v}
       
-      for (int remover = 0; remover < edges.size(); remover++) {
+      for (int remover = 0; remover < edges.size(); remover++) {    // remove from E' adjacent edges to u or v
         Edge removalEdge = edges.get(remover);
         if (edge.getFirst() == removalEdge.getFirst() || edge.getFirst() == removalEdge.getSecond() || edge.getSecond() == removalEdge.getFirst() || edge.getSecond() == removalEdge.getSecond()) {
           edges.remove(remover);
@@ -44,7 +44,7 @@ public class TwoApproximation {
       }
     }
     
-    return vertexCover.toArray(new Integer[vertexCover.size()]);
+    return vertexCover.toArray(new Integer[vertexCover.size()]);    // return C
   }
   
   public static void main(String[] args) {
