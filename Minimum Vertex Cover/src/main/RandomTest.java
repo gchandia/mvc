@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;
 
-public class Main {
+public class RandomTest {
   public static void main(String[] args) {
     int iter = 3; // number of iterations
     
@@ -22,7 +22,7 @@ public class Main {
     long endTime;
     String filename;
     
-    for (int i = 7; i <= 7; i++) {
+    for (int i = 13; i <= 13; i++) {
       System.out.println("Proccessing n = 2^" + i);
       n = (int) Math.pow(2, i);
       
@@ -93,7 +93,7 @@ public class Main {
     FileWriter fw = null;
     
     try {
-      fw = new FileWriter("results" + File.separator + filename);
+      fw = new FileWriter("results_rnd" + File.separator + filename);
       bw = new BufferedWriter(fw);
       bw.write("N = " + n); bw.newLine();
       bw.write("P = " + p); bw.newLine();
