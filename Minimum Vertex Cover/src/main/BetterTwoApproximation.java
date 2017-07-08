@@ -52,7 +52,7 @@ public class BetterTwoApproximation {
       int maxGradeVertex = getMaxGrade(grades);                         // take u in (V\C) with max degree
       vertexCover.add(maxGradeVertex);                                  // C <- C U {u}
       int maxGradeVertexSecond = getMaxAdjacentGrade(edges, maxGradeVertex, grades);    // take v adjacent to u in (V\C, E') with max degree
-      vertexCover.add(maxGradeVertexSecond);                            // C <- C U {v}
+      if (maxGradeVertexSecond != 0) {vertexCover.add(maxGradeVertexSecond);}           // C <- C U {v}
       
       for (int remover = 0; remover < edges.size(); remover++) {        // remove from E' edges adjacent to u
         Edge removalEdge = edges.get(remover);
@@ -92,7 +92,7 @@ public class BetterTwoApproximation {
       }
     }
     
-    gradeArray[index].setDegree();
+    if (index != 0) {gradeArray[index].setDegree();}
     return index;
   }
   
